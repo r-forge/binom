@@ -5,6 +5,12 @@ binom.power <- function(p.alt,
                         phi = 1,
                         alternative = c("two.sided", "greater", "less"),
                         method = c("cloglog", "logit", "probit", "asymp", "lrt", "exact")) {
+  args <- cbind(p.alt, n, p, alpha, phi)
+  p.alt <- args[, "p.alt"]
+  n <- args[, "n"]
+  p <- args[, "p"]
+  alpha <- args[, "alpha"]
+  phi <- args[, "phi"]
   method <- match.arg(method)
   alternative <- match.arg(alternative)
   if(method %in% c("cloglog", "logit", "probit")) {
@@ -29,12 +35,14 @@ binom.power <- function(p.alt,
     sd1 <- sqrt(phi * varfun(p.alt, n))
     pz0 <- pnorm((gamma1 - gamma0 - z * sd0)/sd1) # decrease in p
     pz1 <- pnorm((gamma0 - gamma1 - z * sd0)/sd1) # increase in p
-    power <- if (alternative == "less") {
-      if(p == p.alt) alpha else { if(cloglog) pz0 else pz1 }
+    power <- rep(alpha, length.out = nrow(args))
+    p.diff <- p != p.alt
+    power[p.diff] <- if (alternative == "less") {
+      (if(cloglog) pz0 else pz1)[p.diff]
     } else if (alternative == "greater") {
-      if(p == p.alt) alpha else { if(cloglog) pz1 else pz0 }
+      (if(cloglog) pz1 else pz0)[p.diff]
     } else {
-      if(p == p.alt) alpha else pz0 + pz1
+      (pz0 + pz1)[p.diff]
     }
   } else if(method %in% c("lrt", "exact")) {
     alpha <- if(alternative == "two.sided") alpha else 2 * alpha

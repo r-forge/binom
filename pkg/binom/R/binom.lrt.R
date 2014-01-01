@@ -1,5 +1,5 @@
 binom.lrt <- function(x, n, conf.level = 0.95, bayes = FALSE, conf.adj = FALSE, plot = FALSE, ...) {
-  do.plot <- require(lattice) && ((is.logical(plot) && plot) || is.list(plot))
+  do.plot <- ((is.logical(plot) && plot) || is.list(plot)) && require(lattice)
   xn <- cbind(x = x, n = n)
   ok <- !is.na(xn[, 1]) & !is.na(xn[, 2])
   x <- xn[ok, "x"]
