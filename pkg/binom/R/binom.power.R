@@ -1,4 +1,8 @@
-binom.power <- function(p.alt, n = 100, p = 0.5, alpha = 0.05, phi = 1,
+binom.power <- function(p.alt,
+                        n = 100,
+                        p = 0.5,
+                        alpha = 0.05,
+                        phi = 1,
                         alternative = c("two.sided", "greater", "less"),
                         method = c("cloglog", "logit", "probit", "asymp", "lrt", "exact")) {
   method <- match.arg(method)
@@ -50,8 +54,8 @@ binom.power <- function(p.alt, n = 100, p = 0.5, alpha = 0.05, phi = 1,
 }
 
 tkbinom.power2 <- function() {
-  require(tcltk) || stop("tcltk support is absent")
-  require(lattice)
+  stopifnot(require(tcltk))
+  stopifnot(require(lattice))
   trellis.par.set(theme = col.whitebg())
   local({
     tk.p <- tclVar(0.5)
@@ -144,8 +148,8 @@ tkbinom.power2 <- function() {
 }
 
 tkbinom.power <- function() {
-  require(tcltk) || stop("tcltk support is absent")
-  require(lattice)
+  stopifnot(require(tcltk))
+  stopifnot(require(lattice))
   trellis.par.set(theme = col.whitebg())
   local({
     tk.p <- tclVar(0.5)

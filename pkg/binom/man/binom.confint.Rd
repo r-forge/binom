@@ -26,6 +26,7 @@ binom.confint(x, n, conf.level = 0.95, methods = "all", ...)
 \details{
 Nine methods are allowed for constructing the confidence interval(s):
 
+\itemize{
 \item{\code{exact}}{ - Pearson-Klopper method. See also
   \code{\link{binom.test}}.}
 \item{\code{asymptotic}}{ - the text-book definition for confidence
@@ -39,6 +40,7 @@ Nine methods are allowed for constructing the confidence interval(s):
 \item{\code{cloglog}}{ - see \code{\link{binom.cloglog}}.}
 \item{\code{probit}}{ - see \code{\link{binom.probit}}.}
 \item{\code{profile}}{ - see \code{\link{binom.profile}}.}
+}
 
 By default all eight are estimated for each value of \code{x} and/or
 \code{n}. For the "logit", "cloglog", "probit", and "profile"
