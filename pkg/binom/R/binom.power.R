@@ -29,10 +29,13 @@ binom.power <- function(p.alt,
     sd1 <- sqrt(phi * varfun(p.alt, n))
     pz0 <- pnorm((gamma1 - gamma0 - z * sd0)/sd1) # decrease in p
     pz1 <- pnorm((gamma0 - gamma1 - z * sd0)/sd1) # increase in p
-    power <- switch(alternative,
-                    less      = ifelse(p == p.alt, alpha, if(cloglog) pz0 else pz1),
-                    greater   = ifelse(p == p.alt, alpha, if(cloglog) pz1 else pz0),
-                    two.sided = ifelse(p == p.alt, alpha, pz0 + pz1))
+    power <- if (alternative == "less") {
+      if(p == p.alt) alpha else { if(cloglog) pz0 else pz1 }
+    } else if (alternative == "greater") {
+      if(p == p.alt) alpha else { if(cloglog) pz1 else pz0 }
+    } else {
+      if(p == p.alt) alpha else pz0 + pz1
+    }
   } else if(method %in% c("lrt", "exact")) {
     alpha <- if(alternative == "two.sided") alpha else 2 * alpha
     pci <- binom.confint(n * p, n, 1 - alpha, method)[c("lower", "upper")]
