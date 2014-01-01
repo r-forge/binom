@@ -14,16 +14,22 @@ binom.power(p.alt,
             method = c("cloglog", "logit", "probit", "asymp", "lrt", "exact"))
 }
 \arguments{
-  \item{p.alt}{Probability of success under the alternative hypothesis.}
-  \item{n}{Vector of number of independent trials in the binomial experiment.}
-  \item{p}{Probability of success under the null hypothesis.}
-  \item{alpha}{Type-I error rate.}
-  \item{phi}{Overdispersion parameter.}
+  \item{p.alt}{A vector of success probabilities under the alternative
+    hypothesis.}
+  \item{n}{A vector representing the number of independent trials in the
+    binomial experiment.}
+  \item{p}{A vector of success probabilities under the null hypothesis.}
+  \item{alpha}{A vector of type-I error rates.}
+  \item{phi}{A vector determining the overdispersion parameter for each
+    binomial experiment.}
   \item{alternative}{Type of alternative hypothesis.}
   \item{method}{The method used to compute power.}
 }
 \details{
-  For derivations see \emph{doc/binom.pdf}.
+  For derivations see \emph{doc/binom.pdf}. \code{p.alt}, \code{n},
+  \code{p}, \code{alpha}, and \code{phi} can all be vectors. The length
+  of each argument will be expanded to the longest length. The function
+  assumes the lengths are equal or can be wrapped for multiple values.
 }
 \value{
   The estimated probability of detecting the difference between
