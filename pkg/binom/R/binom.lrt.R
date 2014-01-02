@@ -13,8 +13,8 @@ binom.lrt <- function(x, n, conf.level = 0.95, bayes = FALSE, conf.adj = FALSE, 
   args <- list(...)
   tol <- if(is.null(args$tol)) .Machine$double.eps^0.5 else args$tol
   bindev <- function(y, x, mu, wt, bound = 0, tol = .Machine$double.eps^0.5, ...) {
-    ll.y <- ifelse(y %in% c(0, 1), 0, binom:::ldbinom(x, wt, y))
-    ll.mu <- ifelse(mu %in% c(0, 1), 0, binom:::ldbinom(x, wt, mu))
+    ll.y <- ifelse(y %in% c(0, 1), 0, ldbinom(x, wt, y))
+    ll.mu <- ifelse(mu %in% c(0, 1), 0, ldbinom(x, wt, mu))
     f <- ifelse(abs(y - mu) < tol, 0, sign(y - mu) * sqrt(-2 * (ll.y - ll.mu)))
     f - bound
   }

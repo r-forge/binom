@@ -111,7 +111,7 @@ binom.bayes.densityplot <- function(bayes,
   data.lower <- do.call(rbind, lapply(datalist, "[[", "lower"))
   data.upper <- do.call(rbind, lapply(datalist, "[[", "upper"))
   data.central <- do.call(rbind, lapply(datalist, "[[", "central"))
-  gg <- ggplot(data.central, aes(xx, yy))
+  gg <- ggplot(data.central, aes_string(x = "xx", y = "yy"))
   gg <- gg + geom_polygon(fill = fill.central, alpha = alpha)
   if (nrow(data.lower) > 0) {
     gg <- gg + geom_polygon(data = data.lower, fill = fill.lower, alpha = alpha)
