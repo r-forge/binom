@@ -109,7 +109,9 @@ void binom_bayes(int *x,
     first = (lcl_y < ucl_y ? 0 : 1);
     x1 = first ? mode : 0;
     x2 = first ? 1 : mode;
-    p[0] = y3; p[1] = a[j]; p[2] = b[j];
+    p[0] = y3;
+    p[1] = a[j];
+    p[2] = b[j];
     xx = zeroin(dbeta_shift, x1, x2, p, tol[0], maxit[0]);
     if(first) {
       ucl_x = xx;
