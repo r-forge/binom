@@ -1,6 +1,6 @@
 Package: binom
 Title: Binomial Confidence Intervals For Several Parameterizations
-Version: 1.1-0
+Version: 1.1-1
 Date: 2014-01-01
 Author: Sundar Dorai-Raj <sundar.dorai-raj@pdf.com>
 Description: Constructs confidence intervals on the probability of
